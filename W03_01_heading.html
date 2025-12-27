@@ -9,7 +9,7 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: rgb(246, 218, 255);
+            background-color: rgb(195, 158, 239);
             line-height: 1.7;
         }
         .container{
@@ -35,21 +35,44 @@
         }
         .note{
             border-left: 4px solid gray;    
-            color: #737373;
+            color: #a9a9a9;
             padding-left: 10px;
             margin-top: 15px;
         }
-
+        .note::before{
+            content: "📓";
+        }
         .preMain{
-            border-left: #fe0b91 5px solid;
+            border-left: #ff0000 5px solid;
             background-color: #ebebeb;
             font-size: 16px;
             padding: 10px;
             margin-top: 15px;
         }
-        .h1Black{
+        .Blacktext{
             color:black;
             text-align: left;
+        }
+        .back-link{
+            /*display: inline-block;*/
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #970000;
+            text-align: center;
+            border-radius: 10px;
+            padding: 8px 12px;
+        }
+        .back-link:hover {
+            /* text-decoration-line: underline; */
+            background-color: #ff0505;
+            color: rgb(255, 255, 255);
+        }
+        footer{
+            margin-bottom: 60px;
+
         }
 
 
@@ -73,22 +96,23 @@
                 <li>H6 – เล็กสุด ใช้กับหัวข้อระดับลึก</li>
             </ul>
         
-            <p class="note">📓H1 ควรมีเพียง 1 อันในแต่ละหน้า เพื่อช่วย SEO และโครงสร้างเอกสาร</p>
+            <p class="note">H1 ควรมีเพียง 1 อันในแต่ละหน้า เพื่อช่วย SEO และโครงสร้างเอกสาร</p>
         </div>
 
         
         <!-- section 2-->
         <div class ="card">
         <h2>2. ตัวอย่างการใช ้H1–H6 </h2>
-<pre class ="preMain">
-&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
-&lt;h2&gt;HTML Basics&lt;/h2&gt;
-&lt;h3&gt;What is HTML?&lt;/h3&gt;
-&lt;h4&gt;HTML Syntax&lt;/h4&gt;
-&lt;h5&gt;Example Code&lt;/h5&gt;
-&lt;h6&gt;Note: Case Sensitive&lt;/h6&gt;
-</pre>
-        <h1 class="h1Black">H1: Welcome to My Website</h1>
+    <pre class ="preMain">
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;h2&gt;HTML Basics&lt;/h2&gt;
+    &lt;h3&gt;What is HTML?&lt;/h3&gt;
+    &lt;h4&gt;HTML Syntax&lt;/h4&gt;
+    &lt;h5&gt;Example Code&lt;/h5&gt;
+    &lt;h6&gt;Note: Case Sensitive&lt;/h6&gt;
+    </pre>
+    <p>เมื่อแสดงผลจะได้ขนาดลดหลั่นแบบนี้: </p>
+        <h1 class="Blacktext">H1: Welcome to My Website</h1>
         <h2>H2: HTML Basics</h2>
         <h3>H3: What is HTML?</h3>
         <h4>H4: HTML Syntax</h4>
@@ -97,7 +121,7 @@
 
 
 
-            <p class="note">📓จำไว้ว่า ลำดับหัวข้อควรเป็น H1 → H2 → H3 ตามโครงสร้างเนื้อหา  ไม่ควรใช้ H5 เพื่อให้ “ตัวเล็กลง” หรือใช้ H1 
+            <p class="note">จำไว้ว่า ลำดับหัวข้อควรเป็น H1 → H2 → H3 ตามโครงสร้างเนื้อหา  ไม่ควรใช้ H5 เพื่อให้ “ตัวเล็กลง” หรือใช้ H1 
 เพื่อให้ “ตัวใหญ่ขึ้น”  → ต้องแก้ด้วย CSS เท่านั้น </p>
             </div>
     
@@ -106,28 +130,28 @@
         <div class ="card">
             <h2>3. ถ้าอยากให้หัวข้อ “ใหญ่กว่า” หรือ “เล็กกว่า” ขนาดเดิม? </h2>
             <p>ใช้ CSS แทนการเลือก h1–h6 ผิดลำดับ เช่น: </p>
-<pre class="preMain">
-h3 { 
-    font-size: 40px;   /* ทำให้ H3 ใหญ่เท่า H1 ได้ */ 
-    color: #c4005a; 
-} 
+    <pre class="preMain">
+    h3 { 
+        font-size: 40px;   /* ทำให้ H3 ใหญ่เท่า H1 ได้ */ 
+        color: #c4005a; 
+    } 
 
-h5 { 
-    font-size: 12px;   /* ทำให้ H5 เล็กลงอีก */ 
-} 
+    h5 { 
+        font-size: 12px;   /* ทำให้ H5 เล็กลงอีก */ 
+    } 
 </pre>
 <p>หรือสามารถกำหนดเฉพาะบางหัวข้อได้: </p>
 <pre class="preMain">
-&lt;h3 style="font-size: 50px; color: blue;"&gt;Big Custom Heading&lt;/h3&gt; 
+    &lt;h3 style="font-size: 50px; color: blue;"&gt;Big Custom Heading&lt;/h3&gt; 
 </pre>
         
-            <p class="note">📓จำไว้ว่า ลำดับหัวข้อควรเป็น H1 → H2 → H3 ตามโครงสร้างเนื้อหา ไม่ควรใช้ H5 เพื่อให้ “ตัวเล็กลง” หรือใช้ H1 
+            <p class="note">จำไว้ว่า ลำดับหัวข้อควรเป็น H1 → H2 → H3 ตามโครงสร้างเนื้อหา ไม่ควรใช้ H5 เพื่อให้ “ตัวเล็กลง” หรือใช้ H1 
 เพื่อให้ “ตัวใหญ่ขึ้น”  → ต้องแก้ด้วย CSS เท่านั้น  </p>
         
 </div>
-
-        <a href="index.html">&larr; Back to HTML Tutorial </a>
-
+        <footer>
+        <a href="index.html" class="back-link" >&larr; Back to HTML Tutorial </a>
+        </footer>
 
 
 </body>
