@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            line-height: 1.0;
+            font-size: 16px;
+        }
+        .container{
+            width: 70%;
+            margin: 0 auto;
+        }
+        .card1{
+            background-color: #f6f6f6;
+            padding: 25px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px #c3c3c3;
+            margin-bottom: 35px;
+            border-top: 6px solid #0094bd;
+        }
+        .card2{
+            background-color: aliceblue;
+            padding: 15px 15px;
+            box-shadow: 0 4px 12px #c3c3c3;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        h1{
+            text-align: center;
+            color: rgb(235, 61, 119);
+        }
+        pre{
+            border-left: #00d0ff 5px solid;
+            text-align: left;
+            background-color: #c3c3c3;
+            padding: 20px;
+            margin: 15px;   
+        }
+        mark{
+            background-color: #a7e0f0;
+        }
+        .colorText{
+            color: #929090;
+        }
+        .bgText{
+            background-color: #00d0ff;
+            display: inline-block;
+            padding: 15px 10px;
+            
+        }
+        .bgText2{
+            background-color: #407480;
+            display: inline-block;
+            padding: 15px 10px;
+            border-radius: 7px;
+            color: #ffffff;
+        }
+        .back-link{
+            /*display: inline-block;*/
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #970000;
+            text-align: center;
+            border-radius: 10px;
+            padding: 15px 12px;
+        }
+        .back-link:hover {
+            background-color: #ff0505;
+            color: rgb(255, 255, 255);
+        }
+        .note{
+            border-left: 4px solid gray;    
+            color: #a9a9a9;
+            padding-left: 10px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Workshop: Various Links</h1>
+        <p style="text-align: center;">เรียนรู้ลิงค์หลายรูปแบบ พร้อมตัวอย่างและแบบฝึกหัด</p>
+        <!-- card 1-->
+        <div class="card1">
+            <h2>1. External link</h2>
+            <div class="card2">
+                <a href="">Visit Wikipedia</a>
+                <p><code><mark>target="_blank"</mark> เปิดลิงค์ในแท็บใหม่</code></p>
+            </div>
+
+            <div class="card2">
+                <a href="">Visit Google</a>
+                <p><code><mark>target="_self"</mark> เปิดลิงค์ในหน้าเดิม</code></p>
+            </div>
+        </div>
+    
+        <!-- card 2-->
+        <div class="card1">
+            <h2>2. Internal Links & Anchor Links</h2>
+            <pre>
+    &lt;a href="about.html"&gt;About Us&lt;/a&gt; 
+
+    &lt;a href="#jump"&gt;Jump to Section&lt;/a&gt; 
+    
+    &lt;h3 id="jump"&gt;This is the jump target&lt;/h3&gt; 
+            </pre>
+            <a href="">Cilck To Jump</a>
+            <h3>This is the jump target.</h3>
+        </div>
+
+        <!-- card 3-->
+         <div class="card1">
+            <h2>3. Email Links</h2>
+            <pre>
+    &lt;a href="mailto:student@example.com?subject=Hello"&gt; 
+    Send an Email 
+    &lt;/a&gt;             
+            </pre>
+            <a href="">Send an Email</a>
+         </div>
+
+         <!-- card 4-->
+          <div class="card1">
+            <h2>4. Download Links</h2>
+            <pre>
+    &lt;a href="files/sample.txt" download&gt;Download File&lt;/a&gt;
+            </pre>
+            <h3 class="bgText">Download Text File</h3>
+            <p class="colorText">ต้องมีไฟล์ในโฟลเดอร์ถึงจะดาวน์โหลดได้จริง</p>
+          </div>
+
+          <!-- card 5-->
+           <div class="card1">
+            <h2>5. Button Link</h2>
+            <p>ลิงค์ในรูปแบบให้คล้ายปุ่ม เหมาะกับปุ่มสมัคร ปุ่มอ่านเพิ่มเติม หรือปุ่มนำทาง</p>
+            <pre>
+    &lt;a href="https://www.example.com" class="btn-link"&gt; 
+    Visit Website 
+    &lt;/a&gt;
+            </pre>
+            <h3 class="bgText2">Visit Website</h3>
+            <p>สร้างปุ่มด้วยแท็ก <mark>buttom</mark></p>
+            <pre>
+    &lt;button onclick="document.location='index.html'"&gt;HTML Tutorial&lt;/button&gt;
+    
+    - มักใช้เมื่อลิงก์ไป หน้าในเว็บเดียวกัน
+
+    - ผูกกับ DOM (document) โดยตรง 
+
+
+    &lt;button onclick="location.href='https://www.example.com'"&gt;Visit Website&lt;/button&gt;
+    
+    - นิยมใช้มากกว่า
+    
+    - เหมาะทั้งลิงก์ ภายในและภายนอกเว็บ
+    
+    - ผูกกับ window โดยตรง 
+            </pre>
+    <button onclick="document.location='index.html'">HTML Tutorial</button>
+    <button onclick="location.href='https://www.example.com'">Visit Website</button>
+           </div>
+
+        <!-- card 6-->
+         <div class="card1">
+            <h2>6. Image Link</h2>
+            <p>คลิกที่รูปภาพเพื่อเปิดลิงค์</p>
+            <pre>
+    &lt;a href="https://youtube.com"&gt; 
+    &lt;img src="images/sample.jpg" width="250"&gt; 
+    &lt;/a&gt; 
+            </pre>
+            <a href="https://youtube.com"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" width="250"></a>
+            <p class="note">📓 หากต้องการใช้รูปของตนเอง ต้องเก็บรูปไว้ในโฟลเดอร์ เช่น <mark>image/photo.jpg</mark></p>
+         </div>
+         <a href="index.html" class="back-link">&larr; Back to HTML Tutorial </a>
+    </div>  
+    
+</body>
+</html>
