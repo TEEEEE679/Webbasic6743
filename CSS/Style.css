@@ -1,0 +1,217 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 2;
+    background-image: url(../images/steam2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+html {
+    scroll-padding-top: 300px;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 300px auto 20px;
+}
+
+.cardmain {
+    background-image: url(../images/steam2.jpg);
+    padding: 10px;
+    border-radius: 15px;
+    border: 4px solid black;
+}
+
+.cardsen {
+    background-color: rgb(171, 129, 113);
+    border-radius: 15px;
+    border: 4px solid black;
+    margin: 15px;
+}
+
+.cardG {
+    display: flex;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+header {
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../images/giga.jpg);
+    padding: 20px;
+    box-shadow: 1px 3px 10px black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+}
+
+.list-menu ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 50px;
+    
+}
+
+.list-menu li {
+    margin-top: 30px;
+    width: 350px;
+    
+}
+
+.list-menu a {
+    text-decoration: none;
+    color: rgb(21, 21, 21);
+    font-weight: bold;
+    background: linear-gradient(40deg, rgb(165, 211, 234)), rgb(49, 107, 111);
+    padding: 8px 12px;
+    border-radius: 7px;
+    font-size: 40px;
+    padding: 8px 15px;
+    border: black solid;
+}
+
+.list-menu a:hover {
+    color: white;
+    background: rgb(7, 39, 115);
+}
+
+.liButton {
+    width: 300px;
+}
+
+.imgsize {
+    border: 4px solid black;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.fontstyle {
+    text-align: left;
+    color: wheat;
+    font-size: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.fontG {
+    text-align: left;
+    border-radius: 15px;
+    background-color: wheat;
+    font-size: 25px;
+    padding: 15px;
+    margin: 10px;
+}
+
+.fontG.model1 {
+    width: 200px;
+}
+
+.fontG.model1-1 {
+    width: 200px;
+    background-color: rgb(255, 210, 127);
+}
+
+.fontG.model2 {
+    width: 800px;
+}
+
+.fontG.model2-1 {
+    width: 800px;
+    background-color: rgb(255, 210, 127);
+}
+
+.fontG.model3 {
+    width: 150px;
+    text-align: center;
+}
+
+.fontG.model3-1 {
+    text-align: center;
+    width: 150px;
+    background-color: rgb(128, 201, 212);
+}
+
+.fontG.model3-2 {
+    width: 150px;
+    background-color: rgb(255, 210, 127);
+}
+
+.fontG.model4 {
+    text-align: center;
+    width: 700px;
+    background-color: rgb(6, 66, 71);
+    color: white;
+}
+
+.fontG.model5 {
+    text-align: center;
+    width: 700px;
+    background-color: rgb(187, 167, 145);
+}
+
+h1 {
+    font-size: 60px;
+    background-image: url(../images/drogaaaa.jpg);
+    background-size: cover;
+    border: black solid;
+    color: #ffffff;
+    -webkit-text-stroke: 2px black;
+}
+
+h2 {
+    text-align: left;
+    color: rgb(65, 52, 28);
+    padding: 10px;
+    margin: 10px;
+    font-size: 67px;
+}
+
+.Grade {
+    background-color: rgb(65, 52, 28);
+    border-radius: 15px;
+    text-align: left;
+    padding: 15px;
+    margin: 10px;
+    font-size: 38px;
+    color: wheat
+}
+
+.center-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardG.left {
+    justify-content: end;
+}
+
+.back-link {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #970000;
+    text-align: center;
+    border-radius: 16px;
+    padding: 15px 12px;
+}
+
+.back-link:hover {
+    background-color: #ff0505;
+    color: rgb(255, 255, 255);
+}
