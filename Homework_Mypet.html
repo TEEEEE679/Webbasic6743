@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mypets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: "Itim", cursive;
+            background-color: wheat;
+            color: #111;
+        }
+        h3{
+            margin-top: 10px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+        .container {
+            width: 1000px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+
+        .main-nav {
+            background-color: rgb(53, 113, 113);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;        
+        }
+        .mylogo {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            font-size:32px;
+            
+        }
+        
+        .nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+
+            display: block;
+            padding: 10px 10px;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background-color: rgb(0, 70, 70);
+        }
+        .imgfix{
+            height: 300px;
+       width: 500px;
+       object-fit: cover;
+        }
+
+        /* ============== Content for Card =============== */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .content-main {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+
+        .content-text {
+            margin-bottom: 25px;
+        }
+
+        .card {
+            padding: 20px;
+            background-color: antiquewhite;
+            height: 550px;
+            border-radius: 10px;
+            box-shadow: 0 1px 8px #a8a8a8;
+            
+        }
+        footer{
+            color: white;
+            background-color: #111;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="mylogo">
+            <img style="height: 60px; width: 60px;" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0933e753-46e6-4a96-aa10-0d6e0c26c2d6/dk728dp-80b9a333-6023-4274-bb3c-08534549fb38.png/v1/fill/w_774,h_1032/uma_musume___rice_shower___chibi__xps_dl__by_crypt_xps_dk728dp-pre.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTgwMCIsInBhdGgiOiJcL2ZcLzA5MzNlNzUzLTQ2ZTYtNGE5Ni1hYTEwLTBkNmUwYzI2YzJkNlwvZGs3MjhkcC04MGI5YTMzMy02MDIzLTQyNzQtYmIzYy0wODUzNDU0OWZiMzgucG5nIiwid2lkdGgiOiI8PTEzNTAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.tYUfD8JJImdE0ybnW1Hc_OBSDBl0bd45RZ_7iJABMeM" alt="logo">
+            <h1>Animal</h1>
+            </div>
+        </div>
+    </header>
+    <div class="main-nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">Pet</a></li>
+                <li><a href="">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content-grid">
+            <div class="content-main">
+                <!-- card 1-->
+
+                <div class="card">
+                    <img class="imgfix"
+                        src="https://iheartgoldens.com/wp-content/uploads/2025/04/-golden-retriever-rescue-massachusetts-adoption-success-stories-involved.jpg"
+                        alt="Dog">
+                    <h3>สุนัข: เพื่อนแท้ผู้ร่วมทางประวัติศาสตร์มนุษย์</h3>
+                    <p class="content-text">
+                        ไม่ได้เป็นเพียงสัตว์เลี้ยง แต่คือ "สัตว์สังคม"
+                        ที่มีความผูกพันทางอารมณ์กับมนุษย์อย่างแน่นแฟ้นมานานนับหมื่นปี ด้วยวิวัฒนาการ
+                        ที่เปลี่ยนจากสัตว์ป่ามาสู่ผู้ช่วยเฝ้าบ้านล่าสัตว์ และเพื่อนเล่นในปัจจุบัน
+                    </p>
+                    <a href="">อ่านเพิ่มเติม</a>
+                </div>
+            </div>
+
+            <!-- card 2-->
+            <div class="content-main">
+                <div class="card">
+                    <img class="imgfix" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/1280px-Cat_August_2010-4.jpg" alt="Cat">
+                    <h3>แมว: นักล่าผู้สง่างามในคราบสัตว์เลี้ยงจอมหยิ่ง</h3>
+                    <p class="content-text">
+                        แมว คือสัตว์ที่มีเอกลักษณ์เฉพาะตัวสูง ด้วยสัญชาตญาณ "นักล่า"
+                        ที่ยังคงหลงเหลืออยู่อย่างเต็มเปี่ยม แม้จะผันตัวมาเป็นสัตว์เลี้ยงในบ้านแล้วก็ตาม
+                        พวกมันมีทักษะการเคลื่อนที่ที่คล่องแคล่ว ประสาทสัมผัสที่ไวต่อสิ่งเร้า
+                        และความสามารถในการเอาตัวรอดที่ยอดเยี่ยม</p>
+                    <a href="">อ่านเพิ่มเติม</a>
+                </div>
+            </div>
+
+            <!-- card 3-->
+            <div class="content-main">
+                <div class="card">
+                    <img class="imgfix" src="https://d1baueb6wfhxkz.cloudfront.net/633520cd6413bd01906f21e1/large/1683775982623328.jpg" alt="Snake  ">
+                    <h3>งู: นักล่าไร้เสียงผู้เปี่ยมด้วยศิลปะการเอาตัวรอด</h3>
+                    <p class="content-text">
+                        งู คือสัตว์เลื้อยคลานที่วิวัฒนาการมาได้อย่างสมบูรณ์แบบที่สุดกลุ่มหนึ่งของโลก
+                        แม้จะไร้ขาแต่พวกมันกลับเคลื่อนที่ได้อย่างรวดเร็วและเงียบเชียบในทุกสภาพภูมิประเทศ
+                        ตั้งแต่ป่าทึบไปจนถึงทะเลทราย ด้วยกล้ามเนื้อที่ทรงพลังและการขยับเกล็ดที่ละเอียดอ่อน</p>
+                    <a href="">อ่านเพิ่มเติม</a>
+                </div>
+            </div>
+
+            <!-- card 4-->
+            <div class="content-main">
+                <div class="card">
+                    <img class="imgfix" src="https://blog.nwf.org/wp-content/blogs.dir/11/files/2015/12/white-collar_Pat-Roque-1024x731.jpg" alt="Bear">
+                    <h3>หมี: ยักษ์ใหญ่ใจดีผู้ครองตำแหน่งจุดสูงสุดของห่วงโซ่อาหาร</h3>
+                    <p class="content-text">
+                        หมี คือสัตว์เลี้ยงลูกด้วยนมขนาดใหญ่ที่เป็นสัญลักษณ์ของ "พละกำลัง" และ "ความอดทน"
+                        พวกมันมีการปรับตัวที่ยอดเยี่ยมจนสามารถอาศัยอยู่ได้แทบทุกมุมโลก
+                        ตั้งแต่ขั้วโลกเหนือที่หนาวเหน็บไปจนถึงป่าเขตร้อน ด้วยสรีระที่แข็งแกร่ง กรงเล็บที่ทรงพลัง
+                        และสัญชาตญาณการเอาตัวรอดที่โดดเด่นอย่างการ "จำศีล" เพื่อผ่านพ้นฤดูที่ยากลำบาก</p>
+                    <a href="">อ่านเพิ่มเติม</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer><p>&copy;Copyright by Teeraphat IT.NPRU</p></footer>
+</body>
+
+</html>
