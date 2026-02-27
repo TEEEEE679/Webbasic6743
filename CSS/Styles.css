@@ -85,6 +85,7 @@
        border-radius: 3px;
        padding: 2px 4px;
    }
+   
 
    .badge {
        color: rgb(255, 255, 255);
@@ -136,7 +137,7 @@
    }
 
    .list-menu li:hover {
-       transform: translatey(-3px)
+       transform: translatey(-10px)
    }
 
    .list-menu a {
