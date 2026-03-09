@@ -1,48 +1,58 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
-html{
+
+html {
     font-size: 24px;
 }
-body{
-  font-family: "Itim", cursive;
-  background-color: wheat;
-  color: #111;
+
+body {
+    font-family: "Itim", cursive;
+    background-color: wheat;
+    color: #111;
+
 }
+
 .wrapper {
-  width: 1000px;
-  max-width: 100%;
-  margin: 0 auto;
+    width: 1000px;
+    max-width: 100%;
+    margin: 0 auto;
 }
-a{
+
+a {
     text-decoration: none;
-    color:#4c38ff;
+    color: #4c38ff;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
 }
 
 
 .site-header {
-  background-color: white;
+    background-color: white;
 }
+
 .header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
 }
-.site-title{
+
+.site-title {
     font-size: 1.4rem;
     font-weight: 700;
 }
-.site-subtitle{
+
+.site-subtitle {
     font-size: 0.875rem;
     color: rgb(75, 75, 75);
 }
-.social-icons a{
+
+.social-icons a {
     font-size: 1rem;
     color: #222222;
     font-weight: 600;
@@ -57,49 +67,58 @@ a:hover{
     margin-left: 10px;
     transition: transform 0.5s ease, background-color 0.3s ease;
 }
-.social-icons a:hover{
+
+.social-icons a:hover {
     color: white;
     background-color: rgb(89, 189, 255);
     border-color: rgb(89, 189, 255);
     transform: translateY(-10px);
 }
+
 /*===============================================*/
 /* Hero Section */
 /* ==============================================*/
 
-.main-nav{
+.main-nav {
     background-color: rgb(41, 14, 14);
+    padding: 0 10px;
 }
 
-.nav-menu{
+.nav-menu {
     display: flex;
     list-style-type: none;
+    
 }
-.nav-menu li a{
+
+.nav-menu li a {
     color: #ffffff;
     font-size: 0.9rem;
 
-    display:block;
-    padding: 10px 10px;
+    display: block;
+    padding: 12px 20px;
 
 }
-.nav-menu li a:hover{   
+
+.nav-menu li a:hover {
     background-color: #001691;
 }
-.nav-menu li a:hover
-,.nav-menu li a.active{
-    background-color: #250909;
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    background-color: #ff5555;
+    height: 100%;
 }
 
-.hero-content{
+.hero-content {
     background-color: rgb(47, 67, 94);
     padding: 30px 0;
     margin-bottom: 30px;
     box-shadow: 0 2px 14px;
 }
-.hero-grid{
-    display:grid;
-    gap:20px;
+
+.hero-grid {
+    display: grid;
+    gap: 20px;
     grid-template-columns: repeat(2, minmax(350px, 1fr));
 
     /*
@@ -109,7 +128,8 @@ a:hover{
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr);
     */
 }
-.hero-title{
+
+.hero-title {
     font-size: 2rem;
     font-weight: 700;
     color: white;
@@ -117,6 +137,7 @@ a:hover{
     text-align: center;
     margin-bottom: 20px;
 }
+
 .hero-item {
     background-color: #ffffff;
     border-radius: 8px;
@@ -181,7 +202,7 @@ a:hover{
 /* Page Section */
 /* ==============================================*/
 
-.content-grid{
+.content-grid {
     display: grid;
     grid-template-columns: 2fr 0.9fr;
     gap: 20px;
@@ -189,31 +210,36 @@ a:hover{
 
 
 /* Left Side - Main */
-.post-list{
+.post-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.card{
+
+.card {
     background-color: white;
     border-radius: 5px;
     padding: 20px;
 }
-.card+.card{
+
+.card+.card {
     margin-top: 15px;
 }
-.card-headline{
+
+.card-headline {
     font-size: 0.687rem;
     color: #001691;
     margin-bottom: 10px;
     text-transform: uppercase;
 }
-.post-header{
+
+.post-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.date-circle{
+
+.date-circle {
     background-color: #2b45da;
     color: white;
     font-size: 0.5rem;
@@ -226,17 +252,20 @@ a:hover{
     justify-content: center;
     align-items: center;
 }
-.date-circle span.day{
+
+.date-circle span.day {
     font-size: 0.8rem;
     font-weight: 700;
 }
-.post-description{
+
+.post-description {
     font-size: 0.82rem;
     color: #555;
     line-height: 1.5;
     margin: 10px 0;
 }
-.post-footer{
+
+.post-footer {
     font-size: 0.69rem;
     color: #363636;
     border-top: 2px solid #9a9a9a;
@@ -250,10 +279,11 @@ a:hover{
 .post-image {
     height: 200px;
     overflow: hidden;
-    
+
     margin: 15px 0;
 }
-.post-image img{
+
+.post-image img {
     width: 100%;
     height: auto;
 
@@ -262,62 +292,54 @@ a:hover{
 
 /* Css for Card 2 */
 /*========== table ==========*/
-.comparison-table{
+.comparison-table {
     /*border-collapse: collapse;*/
     border-radius: 5px;
     box-shadow: 0 2px 8px #d1d1d1;
 }
-.comparison-table th{
+
+.comparison-table th {
     /*border: 2px solid;*/
     background: linear-gradient(45deg, #0a25bd 0%, #41005d 100%);
     color: white;
     padding: 15px;
 }
-.comparison-table td{
+
+.comparison-table td {
     background: rgb(255, 255, 255);
     padding: 15px;
 }
+
 .comparison-table tr:hover td {
     background: rgb(205, 237, 255);
 }
-.feature{
+
+.feature {
     font-weight: 600;
     color: #333;
     background-color: #ffdaaf;
 
 }
-.txt-grey{
+
+.txt-grey {
     font-weight: 500;
     color: #a7a7a7;
 }
-.txt-green{
+
+.txt-green {
     font-weight: 500;
     color: #00cf30;
 }
-.txt-red{
+
+.txt-red {
     font-weight: 500;
     color: #ff0000;
 }
+
 /*=== Form Style Left Side ===*/
 
-.contact-form-main{
-    background-color: rgb(255, 255, 255);    
-    padding: 40px;
-    margin: 0 auto;
-    border-radius: 15px;
-    box-shadow: 0 5px 30px #cfcfcfac;
-    border: 1px solid #808080;
-}
-.contact-form-main.model2{
-    background: linear-gradient(45deg, rgb(89, 45, 45) 0%, rgb(5, 27, 139) 100%);    
-    padding: 40px;
-    margin: 0 auto;
-    border-radius: 15px;
-    box-shadow: 0 5px 30px #cfcfcfac;
-    border: 1px solid #808080;
-}
-.contact-form-main.model3{
-    background: linear-gradient(45deg, rgb(239, 254, 81) 0%, rgb(5, 27, 139) 100%);    
+.contact-form-main {
+    background-color: rgb(255, 255, 255);
     padding: 40px;
     margin: 0 auto;
     border-radius: 15px;
@@ -325,7 +347,25 @@ a:hover{
     border: 1px solid #808080;
 }
 
-.contact-tittle{
+.contact-form-main.model2 {
+    background: linear-gradient(45deg, rgb(89, 45, 45) 0%, rgb(5, 27, 139) 100%);
+    padding: 40px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px #cfcfcfac;
+    border: 1px solid #808080;
+}
+
+.contact-form-main.model3 {
+    background: linear-gradient(45deg, rgb(239, 254, 81) 0%, rgb(5, 27, 139) 100%);
+    padding: 40px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px #cfcfcfac;
+    border: 1px solid #808080;
+}
+
+.contact-tittle {
     font-size: 2rem;
     font-weight: 700;
     color: #464545;
@@ -333,7 +373,8 @@ a:hover{
     text-align: center;
     text-shadow: 0 2px 4px #b9b9b9;
 }
-.contact-tittle.model2{
+
+.contact-tittle.model2 {
     font-size: 0.8rem;
     font-weight: 700;
     color: #ffffff;
@@ -341,14 +382,15 @@ a:hover{
     text-align: center;
     text-shadow: 0 2px 4px #b9b9b9;
 }
-.form-row{
+
+.form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin-bottom: 10px;
 }
 
-.form-label{
+.form-label {
     font-size: 0.82rem;
     color: #464545;
     font-weight: 500;
@@ -356,7 +398,8 @@ a:hover{
     margin-top: 10px;
 
 }
-.form-label.model2{
+
+.form-label.model2 {
     font-size: 0.7rem;
     color: #ffffff;
     font-weight: 500;
@@ -365,14 +408,17 @@ a:hover{
 
 }
 
-.form-input , .form-select , .form-textarea{
+.form-input,
+.form-select,
+.form-textarea {
     width: 100%;
     padding: 12px 8px;
     margin-top: 10px;
     border-radius: 6px;
     font-size: 0.9rem;
 }
-.form-input.model2{
+
+.form-input.model2 {
     width: 100%;
     padding: 8px 8px;
     margin-top: 10px;
@@ -380,21 +426,24 @@ a:hover{
     font-size: 0.7rem;
     border: none;
 }
-.form-select{
+
+.form-select {
     border: 1px soild #464545;
 }
 
-.contact-form-main .form-input ,
-.contact-form-main .form-select ,
-.contact-form-main .form-textarea{
-    background-color:rgb(234, 234, 242);
-    border: 2px soild #464545;
-    color:rgb(47, 67, 94);
+.contact-form-main .form-input,
+.contact-form-main .form-select,
+.contact-form-main .form-textarea {
+    background-color: rgb(234, 234, 242);
+    border: 1px soild #464545;
+    color: rgb(47, 67, 94);
 }
-.contact-form-main .form-select.model2{
+
+.contact-form-main .form-select.model2 {
     font-size: 0.7rem;
     border: none;
 }
+
 /* Focus: ฟอร์มหลัก */
 .contact-form-main .form-input:focus,
 .contact-form-main.form-select:focus,
@@ -406,42 +455,49 @@ a:hover{
     transform: translateY(-1px);
 }
 
-.form-textarea{
+.form-textarea {
     resize: vertical;
     min-height: 100px;
 }
-.form-textarea.model2{
+
+.form-textarea.model2 {
     resize: vertical;
     min-height: 100px;
 }
-.contact-form-main .form-textarea{
+
+.contact-form-main .form-textarea {
     font-size: 0.7rem;
     border: none;
 }
 
-.form-group{
+.form-group {
     margin-bottom: 5px;
 }
-.form-checkbox-group{
+
+.form-checkbox-group {
     margin-top: 10px;
     display: flex;
     gap: 15px;
 
 }
-.checkbox-item{
+
+.checkbox-item {
     display: flex;
     align-items: center;
     font-size: 0.75rem;
     gap: 7px;
 }
-.checkbox-item input[type="checkbox"]{
+
+.checkbox-item input[type="checkbox"] {
     transform: scale(1.15);
     accent-color: rgb(180, 0, 0);
 }
-.button-main{
+
+.button-main {
     margin-top: 40px;
 }
-.form-button{
+
+.form-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -451,32 +507,305 @@ a:hover{
     border-radius: 12px;
     cursor: pointer;
     color: white;
-    background: linear-gradient(45deg, rgb(0, 255, 30) 0%, rgb(5, 139, 41) 100%);    
-    font-size : 1rem;
+    background: linear-gradient(45deg, rgb(0, 255, 30) 0%, rgb(5, 139, 41) 100%);
+    font-size: 1rem;
     font-weight: 700;
     margin-top: 10px;
 }
-.form-button.model2{
-    background: linear-gradient(45deg, rgb(255, 0, 0) 0%, rgb(139, 5, 5) 100%);    
+
+.form-button.model2 {
+    background: linear-gradient(45deg, rgb(255, 0, 0) 0%, rgb(139, 5, 5) 100%);
 }
-.form-button.model3{
-    font-size : 0.8rem;
+
+.form-button.model3 {
+    font-size: 0.8rem;
 }
+
 .contact-form-main .form-button:hover {
-background: linear-gradient(45deg, #1a9962, #77eacf);
-transform: translateY(-2px);
-box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+    background: linear-gradient(45deg, #1a9962, #77eacf);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
 }
 
 
 
 /* Right Side - Aside */
 
-.widget{
+.sidebar-widget{
+    display: flex;
+    flex-direction: column;
+}
+.widget {
     background-color: white;
     border-radius: 5px;
     padding: 20px;
 }
-.widget+.widget{
+
+.widget+.widget {
     margin-top: 15px;
 }
+
+/*=============================================*/
+/*------ กล่องแนะนำผู้เขียน -----*/
+/*=============================================*/
+
+.widget-tittle {
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.auther-photo {
+    background-color: wheat;
+    /* padding: 80px 0; */
+    height: 140px;
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.btn-facebook {
+    padding: 8px;
+    background-color: #556ae3;
+    color: white;
+    font-size: 0.78rem;
+    border-radius: 4px;
+
+    display: inline-block;
+    margin-top: 8px;
+}
+
+.widget-exam {
+    background-color: wheat;
+    padding: 8px 0;
+    border-radius: 4px;
+    font-size: 0.78rem;
+
+    text-align: center;
+    margin: 10px 0;
+}
+
+
+.widget-advert {
+    background-color: wheat;
+    /* padding: 80px 0; */
+    height: 250px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/*------========================= table of ราคาGold =========================-----*/
+
+:root {
+    --line: rgb(0, 0, 0);
+    --bg01: rgb(234, 255, 0);
+    --bg02: rgb(210, 83, 157);
+    --bg03: rgb(179, 234, 245);
+    --bg04: rgb(98, 188, 170);
+    --red-text: rgb(255, 0, 0);
+    --green-text: rgb(0, 88, 13);
+}
+
+.wrap-table {
+    background-color: var(--bg02);
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 2px solid var(--line);
+
+    overflow: hidden;
+}
+
+.gold-table {
+    border: 2px solid var(--line);
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+
+}
+
+.gold-table thead th {
+    background-color: var(--bg01);
+}
+
+.gold-table tbody td {
+    background-color: var(--bg03);
+}
+
+.gold-table th,
+.gold-table td {
+    border: 2px solid var(--line);
+    padding: 10px;
+
+}
+
+.gold-table .total th,
+.gold-table .total td {
+    background-color: var(--bg04);
+    font-weight: 800;
+}
+
+.text-down {
+    color: var(--red-text);
+}
+
+.text-up {
+    color: var(--green-text);
+}
+
+.text-right {
+    text-align: right;
+}
+
+.icon {
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}
+.up {
+    border-bottom: 10px solid var(--green-text);
+}
+
+.down {
+    border-top: 10px solid var(--red-text);
+}
+
+/*=============================================*/
+/*------ Responsive -----*/
+/*=============================================*/
+
+/* สำหรับ 922px */
+@media (max-width: 922px) {
+    html {font-size: 20px;}
+    .site-header {background-color: #c9e9ff;}
+    .content-grid {grid-template-columns: 1fr;}
+    
+}
+/* สำหรับ 768px */
+@media (max-width: 768px) {
+    html {font-size: 16px;}
+    .site-header {background-color: #beffe1;}
+    .hero-grid{grid-template-columns: 1fr;}
+    .form-row{
+        grid-template-columns: 1fr;
+    }
+    .form-group{
+        grid-template-columns: 1fr;
+    }
+    .nav-menu{
+        flex-direction: column;
+        padding-top: 10px;
+    }
+    .form-checkbox-group{
+        flex-direction: column;
+    }
+    #hamburger-menu{
+        display:none;
+    }
+}
+
+/* สำหรับ 576px */
+@media (max-width: 576px) {
+    .site-header {background-color: #ffd5d5;}
+
+/* Hamburger menu */
+    #hamburger-menu{
+    display:block;
+    height: 30px;
+    width: 30px;
+    position: relative;
+}
+
+/* เส้น */
+
+#hamburger-menu span,
+#hamburger-menu span:before,
+#hamburger-menu span::after{
+    background-color: white;
+    height: 3px;
+    width: 100%;
+    display: block;
+    position: absolute;
+    content: "";
+    z-index: 9999;
+
+    transition: all 0.5s ease;
+}
+#hamburger-menu span{
+    top: 13px;
+}
+#hamburger-menu span:before{
+    top: -8px;
+}
+#hamburger-menu span::after{
+    top: 8px;
+}
+
+    .main-nav{
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Close X */
+    #hamburger-menu.close span{
+        background: transparent;
+    }
+    #hamburger-menu.close span:before{
+        transform: rotate(45deg);
+        top: 0;
+    }
+    #hamburger-menu.close span:after{
+        transform: rotate(-45deg);
+        top: 0;
+    }
+
+     #menu{
+        display: none;
+    }
+
+    #menu.overlay {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    /* สลับตำแหน่งของ item */
+    .order-box-image {order: 3;}
+    .order-box-table {order: 1;}
+    .order-box-form {order: 2;}
+
+    
+    .order-w-intro{order: 1;}
+    .order-w-regin{order: 4;}
+    .order-w-contant{order: 5;}
+    .order-w-fb{order:2;}
+    .order-w-spon{order: 3;}
+
+    .gold-table{
+        width: 100%;
+    }
+}
+
+
+
+/*=============================================*/
+/*------ footer -----*/
+/*=============================================*/
+.footer {
+    background-color: black;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 0.6rem;
+    margin-top: 30px;
+}
+
