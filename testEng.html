@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT English Survival Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals with Sage and Terracotta Accents (Stone-50 background, Stone-800 text, Teal-700/Orange-700 highlights) -->
+    <!-- Application Structure Plan: The SPA uses a tabbed dashboard structure to break down the "Last-Minute Survival Guide" into digestible, interactive chunks. This prevents cognitive overload the night before the exam. Users can navigate between 'Overview/Dashboard' (exam structure & mindset), 'Strategies' (test-taking tips), 'Vocabulary' (interactive prefix/suffix flashcards), and 'Grammar' (quick-reference cheat sheet). This non-linear exploration allows the student to focus only on their weak points. -->
+    <!-- Visualization & Content Choices: 
+         1. Exam Breakdown -> Goal: Inform on score distribution -> Viz: Doughnut Chart (Chart.js) -> Interaction: Hover for exact question counts -> Justification: Helps student visualize where to allocate effort. Library: Chart.js (Canvas).
+         2. Vocab Practice -> Goal: Organize & Learn -> Viz: Clickable Flip Cards (HTML/CSS/JS) -> Interaction: Click to reveal meaning and examples -> Justification: Active recall testing is better than passive reading. 
+         3. Grammar Rules -> Goal: Compare & Reference -> Viz: Tabbed Tables/Lists (HTML/CSS) -> Interaction: Click tabs to switch topics -> Justification: Keeps the UI clean and categorizes rules logically.
+         Confirming NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        sage: {
+                            600: '#52796f',
+                            700: '#354f52',
+                        },
+                        terracotta: {
+                            600: '#e07a5f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <nav class="bg-stone-900 text-stone-50 shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-bold text-xl tracking-wide flex items-center gap-2">
+                    🎓 IT English Survival
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn bg-stone-800 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-stone-700">ภาพรวม</button>
+                        <button onclick="switchTab('strategies')" id="nav-strategies" class="nav-btn text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">เทคนิคห้องสอบ</button>
+                        <button onclick="switchTab('vocab')" id="nav-vocab" class="nav-btn text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">เดาศัพท์ฉุกเฉิน</button>
+                        <button onclick="switchTab('grammar')" id="nav-grammar" class="nav-btn text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">แกรมม่าเร่งด่วน</button>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-stone-400 hover:text-white hover:bg-stone-700 focus:outline-none">
+                        ☰
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="switchTab('dashboard')" class="text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">ภาพรวม</button>
+                <button onclick="switchTab('strategies')" class="text-stone-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">เทคนิคห้องสอบ</button>
+                <button onclick="switchTab('vocab')" class="text-stone-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">เดาศัพท์ฉุกเฉิน</button>
+                <button onclick="switchTab('grammar')" class="text-stone-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left">แกรมม่าเร่งด่วน</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <section id="dashboard" class="tab-content block animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 md:p-10">
+                <h1 class="text-3xl font-bold text-stone-900 mb-4">เตรียมพร้อมก่อนลงสนามสอบ 🚨</h1>
+                <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+                    ส่วนนี้คือภาพรวมของสิ่งที่คุณต้องเผชิญในห้องสอบ เพื่อให้คุณเห็นสัดส่วนคะแนนและสามารถวางแผนการทำข้อสอบได้อย่างชาญฉลาด กราฟด้านล่างแสดงจำนวนข้อในแต่ละพาร์ท เพื่อให้คุณรู้ว่าควรใช้เวลาไปกับส่วนไหนมากที่สุด
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div class="bg-stone-50 p-6 rounded-lg border border-stone-100">
+                        <h2 class="text-xl font-semibold mb-4 text-center">สัดส่วนข้อสอบทั้งหมด (75 ข้อ)</h2>
+                        <div class="chart-container">
+                            <canvas id="examChart"></canvas>
+                        </div>
+                        <p class="text-sm text-center text-stone-500 mt-4">กราฟแสดงการกระจายตัวของข้อสอบ (Listening 20 ข้อ, Multiple Choice 55 ข้อ)</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-sage-600 text-white p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold mb-2">💡 เป้าหมายของคุณ</h3>
+                            <p>ทำคะแนนให้ได้มากที่สุดในเวลาที่จำกัด ห้ามจมอยู่กับข้อที่ทำไม่ได้ ใช้ทรัพยากร (ความรู้) ที่มีในหัวตอนนี้ให้คุ้มค่าที่สุด การนอนพักผ่อนให้เพียงพอสำคัญกว่าการพยายามยัดเนื้อหาใหม่ในคืนสุดท้าย</p>
+                        </div>
+                        <div class="bg-terracotta-600 text-white p-6 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-bold mb-2">⏱️ บริหารเวลาให้เป็น</h3>
+                            <p>ข้อสอบมีทั้งหมด 75 ข้อ เฉลี่ยแล้วคุณมีเวลาไม่เกิน 1-1.5 นาทีต่อข้อ ตัดสินใจให้ไว เดาอย่างมีหลักการ และที่สำคัญคือ <strong>ห้ามปล่อยกระดาษคำตอบว่างเด็ดขาด</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategies" class="tab-content hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 md:p-10">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">เทคนิคการทำข้อสอบ (Test Strategies) 🎯</h2>
+                <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+                    เนื้อหาส่วนนี้รวบรวม "วิธีเอาตัวรอด" ในห้องสอบเมื่อคุณเจอทางตัน คลิกที่หัวข้อด้านล่างเพื่อเปิดดูเทคนิคที่จะช่วยให้คุณประหยัดเวลาและเพิ่มโอกาสตอบถูกแม้ในข้อที่ไม่มั่นใจ
+                </p>
+
+                <div class="space-y-4">
+                    <div class="border border-stone-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('acc1')" class="w-full text-left px-6 py-4 bg-stone-100 hover:bg-stone-200 font-semibold text-lg flex justify-between items-center transition-colors">
+                            <span>⏱️ กฎ 1 นาที (1-Minute Rule)</span>
+                            <span id="acc1-icon">▼</span>
+                        </button>
+                        <div id="acc1" class="hidden px-6 py-4 bg-white text-stone-700 leading-relaxed">
+                            อ่านข้อไหนเกิน 1 นาทีแล้วยังมืดแปดด้าน <strong>ให้ตัดช้อยส์ที่ผิดแน่ๆ ออก ➡️ เดา ➡️ ข้ามไปทำข้ออื่นก่อน</strong> วงเครื่องหมายไว้หน้าข้อ ถ้าเหลือเวลาค่อยกลับมาดู
+                        </div>
+                    </div>
+
+                    <div class="border border-stone-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('acc2')" class="w-full text-left px-6 py-4 bg-stone-100 hover:bg-stone-200 font-semibold text-lg flex justify-between items-center transition-colors">
+                            <span>📝 ห้ามส่งกระดาษเปล่าเด็ดขาด</span>
+                            <span id="acc2-icon">▼</span>
+                        </button>
+                        <div id="acc2" class="hidden px-6 py-4 bg-white text-stone-700 leading-relaxed">
+                            5 นาทีสุดท้ายก่อนหมดเวลา ถ้าทำไม่ทันจริงๆ ให้ <strong>"ฝนดิ่ง"</strong> (เช่น เลือกข้อ B รวดทุกข้อที่เหลือ) การทำแบบนี้ดีกว่าปล่อยกระดาษคำตอบว่างๆ เพราะอย่างน้อยยังมีโอกาสถูก 25%
+                        </div>
+                    </div>
+
+                    <div class="border border-stone-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('acc3')" class="w-full text-left px-6 py-4 bg-stone-100 hover:bg-stone-200 font-semibold text-lg flex justify-between items-center transition-colors">
+                            <span>🎧 พาร์ทฟัง (Listening): อ่านช้อยส์ล่วงหน้าเสมอ</span>
+                            <span id="acc3-icon">▼</span>
+                        </button>
+                        <div id="acc3" class="hidden px-6 py-4 bg-white text-stone-700 leading-relaxed">
+                            ระหว่างเทปกำลังอ่านกติกา (Directions) ให้รีบสแกนกวาดสายตาอ่านช้อยส์ข้อ 1-3 รอไว้เลย การรู้ว่าช้อยส์คืออะไร (ตัวเลขเวลา, สถานที่, หรือชื่อคน) จะช่วยให้สมองโฟกัสรอฟังแค่ข้อมูลนั้นๆ และตัดเสียงรบกวนอื่นๆ ทิ้งได้
+                        </div>
+                    </div>
+
+                    <div class="border border-stone-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleAccordion('acc4')" class="w-full text-left px-6 py-4 bg-stone-100 hover:bg-stone-200 font-semibold text-lg flex justify-between items-center transition-colors">
+                            <span>💻 เซนส์เด็กไอที (The IT Mindset)</span>
+                            <span id="acc4-icon">▼</span>
+                        </button>
+                        <div id="acc4" class="hidden px-6 py-4 bg-white text-stone-700 leading-relaxed">
+                            ข้อสอบภาษาอังกฤษมักจะมีความเป็นเหตุเป็นผลซ่อนอยู่ ให้ใช้ตรรกะ (Logic) แบบเดียวกับตอนเขียนโปรแกรมมาช่วยวิเคราะห์ความน่าจะเป็นของประโยค ถ้าท่อนแรกเป็นลบ ท่อนหลังมีคำเชื่อมขัดแย้ง ท่อนหลังก็ควรจะเป็นบวก
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="vocab" class="tab-content hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 md:p-10">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">ทริคเดาศัพท์ฉุกเฉิน (Prefix & Suffix) 🧩</h2>
+                <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+                    เมื่อเจอคำศัพท์ที่ไม่รู้จัก อย่าเพิ่งยอมแพ้! ทดสอบตัวเองด้วย Flashcard ด้านล่าง คลิกที่การ์ดเพื่อดูความหมายของส่วนเติมคำ (Prefix/Suffix) ที่มักเจอบ่อยในบทความสายไอที สิ่งเหล่านี้จะช่วยใบ้ความหมายของคำศัพท์ยาวๆ ได้
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="flip-card h-48 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner relative w-full h-full text-center">
+                            <div class="flip-card-front absolute w-full h-full bg-stone-100 rounded-xl shadow-sm border border-stone-200 flex flex-col items-center justify-center p-4">
+                                <span class="text-3xl font-bold text-sage-700">-able / -ible</span>
+                                <span class="text-sm text-stone-500 mt-2">(ลงท้ายคำ)</span>
+                                <span class="mt-4 text-xs bg-stone-200 px-2 py-1 rounded text-stone-600">คลิกเพื่อดูความหมาย</span>
+                            </div>
+                            <div class="flip-card-back absolute w-full h-full bg-sage-600 text-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4">
+                                <span class="text-xl font-bold mb-2">สามารถ...ได้</span>
+                                <hr class="w-1/2 border-white/30 my-2">
+                                <span class="text-sm">scal<b>able</b> (ขยายได้)</span>
+                                <span class="text-sm">read<b>able</b> (อ่านได้)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card h-48 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner relative w-full h-full text-center">
+                            <div class="flip-card-front absolute w-full h-full bg-stone-100 rounded-xl shadow-sm border border-stone-200 flex flex-col items-center justify-center p-4">
+                                <span class="text-3xl font-bold text-sage-700">-less</span>
+                                <span class="text-sm text-stone-500 mt-2">(ลงท้ายคำ)</span>
+                                <span class="mt-4 text-xs bg-stone-200 px-2 py-1 rounded text-stone-600">คลิกเพื่อดูความหมาย</span>
+                            </div>
+                            <div class="flip-card-back absolute w-full h-full bg-sage-600 text-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4">
+                                <span class="text-xl font-bold mb-2">ปราศจาก / ไม่มี</span>
+                                <hr class="w-1/2 border-white/30 my-2">
+                                <span class="text-sm">wire<b>less</b> (ไร้สาย)</span>
+                                <span class="text-sm">use<b>less</b> (ไร้ประโยชน์)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card h-48 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner relative w-full h-full text-center">
+                            <div class="flip-card-front absolute w-full h-full bg-stone-100 rounded-xl shadow-sm border border-stone-200 flex flex-col items-center justify-center p-4">
+                                <span class="text-2xl font-bold text-sage-700">un- / in- / dis-</span>
+                                <span class="text-sm text-stone-500 mt-2">(ขึ้นต้นคำ)</span>
+                                <span class="mt-4 text-xs bg-stone-200 px-2 py-1 rounded text-stone-600">คลิกเพื่อดูความหมาย</span>
+                            </div>
+                            <div class="flip-card-back absolute w-full h-full bg-terracotta-600 text-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4">
+                                <span class="text-xl font-bold mb-2">ไม่ / ตรงกันข้าม</span>
+                                <hr class="w-1/2 border-white/30 my-2">
+                                <span class="text-sm"><b>dis</b>connect (ตัดเชื่อมต่อ)</span>
+                                <span class="text-sm"><b>in</b>valid (ไม่ถูกต้อง)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card h-48 cursor-pointer group" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner relative w-full h-full text-center">
+                            <div class="flip-card-front absolute w-full h-full bg-stone-100 rounded-xl shadow-sm border border-stone-200 flex flex-col items-center justify-center p-4">
+                                <span class="text-3xl font-bold text-sage-700">re-</span>
+                                <span class="text-sm text-stone-500 mt-2">(ขึ้นต้นคำ)</span>
+                                <span class="mt-4 text-xs bg-stone-200 px-2 py-1 rounded text-stone-600">คลิกเพื่อดูความหมาย</span>
+                            </div>
+                            <div class="flip-card-back absolute w-full h-full bg-terracotta-600 text-white rounded-xl shadow-sm flex flex-col items-center justify-center p-4">
+                                <span class="text-xl font-bold mb-2">อีกครั้ง (Again)</span>
+                                <hr class="w-1/2 border-white/30 my-2">
+                                <span class="text-sm"><b>re</b>boot (เริ่มระบบใหม่)</span>
+                                <span class="text-sm"><b>re</b>write (เขียนใหม่)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="grammar" class="tab-content hidden animate-fade-in">
+            <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 md:p-10">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">แกรมม่าฉบับเร่งด่วน (Quick Grammar Review) 📖</h2>
+                <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+                    ส่วนนี้จัดหมวดหมู่กฎไวยากรณ์ที่ออกสอบบ่อยที่สุด เลือกคลิกปุ่มหมวดหมู่ด้านซ้ายเพื่อดูตารางสรุปแบบรวบรัด ใช้เป็นสูตรโกงในการทำข้อสอบแบบตัดช้อยส์ได้ทันที
+                </p>
+
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="w-full md:w-1/3 flex flex-col space-y-2">
+                        <button onclick="switchGrammarTab('tenses')" id="g-btn-tenses" class="g-btn text-left px-4 py-3 rounded-lg bg-stone-800 text-white font-medium transition-colors">⏳ Tenses & Time Markers</button>
+                        <button onclick="switchGrammarTab('prepo')" id="g-btn-prepo" class="g-btn text-left px-4 py-3 rounded-lg bg-stone-100 text-stone-700 hover:bg-stone-200 font-medium transition-colors">📍 Prepositions (In/On/At)</button>
+                        <button onclick="switchGrammarTab('rules')" id="g-btn-rules" class="g-btn text-left px-4 py-3 rounded-lg bg-stone-100 text-stone-700 hover:bg-stone-200 font-medium transition-colors">⚖️ กฎเหล็กอื่นๆ ที่ห้ามพลาด</button>
+                    </div>
+
+                    <div class="w-full md:w-2/3">
+                        
+                        <div id="g-tab-tenses" class="g-tab-content block animate-fade-in">
+                            <h3 class="text-2xl font-bold mb-4 text-stone-800">จับคู่ Tense กับคำบอกเวลา</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-stone-100 border-b border-stone-200">
+                                            <th class="p-4 font-semibold text-stone-700">คำบอกเวลา (Time Marker)</th>
+                                            <th class="p-4 font-semibold text-stone-700">โครงสร้างกริยาที่ต้องเลือก</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-stone-200">
+                                        <tr>
+                                            <td class="p-4"><span class="bg-stone-200 px-2 py-1 rounded text-sm font-mono">yesterday, last...</span> (อดีต)</td>
+                                            <td class="p-4 font-bold text-terracotta-600">กริยาช่อง 2 <span class="font-normal text-sm text-stone-500">(เช่น crashed, fixed, เติม -ed)</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4"><span class="bg-stone-200 px-2 py-1 rounded text-sm font-mono">now, at the moment</span> (ตอนนี้)</td>
+                                            <td class="p-4 font-bold text-sage-600">is / am / are + V.ing</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4"><span class="bg-stone-200 px-2 py-1 rounded text-sm font-mono">since, for</span> (อดีตถึงปัจจุบัน)</td>
+                                            <td class="p-4 font-bold text-stone-800">have / has + V.3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="g-tab-prepo" class="g-tab-content hidden animate-fade-in">
+                            <h3 class="text-2xl font-bold mb-4 text-stone-800">Preposition ยอดฮิต (เวลา vs สถานที่)</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-stone-100 border-b border-stone-200">
+                                            <th class="p-4 font-semibold text-stone-700 w-1/5">คำ</th>
+                                            <th class="p-4 font-semibold text-stone-700 w-2/5">ใช้กับเวลา (Time)</th>
+                                            <th class="p-4 font-semibold text-stone-700 w-2/5">ใช้กับสถานที่/สิ่งของ (Place)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-stone-200">
+                                        <tr>
+                                            <td class="p-4 font-bold text-xl text-center bg-stone-50">IN</td>
+                                            <td class="p-4">เดือน, ปี<br><span class="text-sm text-stone-500 italic">(in 2026, in October)</span></td>
+                                            <td class="p-4">พื้นที่ปิด, ในห้อง<br><span class="text-sm text-stone-500 italic">(in the server room)</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4 font-bold text-xl text-center bg-stone-50">ON</td>
+                                            <td class="p-4">วันในสัปดาห์<br><span class="text-sm text-stone-500 italic">(on Friday)</span></td>
+                                            <td class="p-4 font-bold text-terracotta-600">หน้าจอ, พื้นผิวดิจิทัล<br><span class="text-sm text-stone-500 italic font-normal">(on the website, on screen)</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-4 font-bold text-xl text-center bg-stone-50">AT</td>
+                                            <td class="p-4">เวลาเป๊ะๆ<br><span class="text-sm text-stone-500 italic">(at 09:00 AM)</span></td>
+                                            <td class="p-4">จุดที่ตั้งเฉพาะ, บริษัท<br><span class="text-sm text-stone-500 italic">(at Microsoft, at home)</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="g-tab-rules" class="g-tab-content hidden animate-fade-in">
+                            <h3 class="text-2xl font-bold mb-4 text-stone-800">กฎเหล็กพื้นฐาน</h3>
+                            
+                            <div class="mb-6 p-5 border border-stone-200 rounded-lg bg-stone-50">
+                                <h4 class="font-bold text-lg mb-2 text-sage-700">1. ประธาน & กริยา (Subject-Verb Agreement)</h4>
+                                <ul class="list-disc pl-5 space-y-2 text-stone-700">
+                                    <li>ประธาน 1 คน/ชิ้น 👉 กริยาปัจจุบัน <b>ต้องเติม -s/-es</b> <br><span class="text-sm text-stone-500 italic">(The server crashes.)</span></li>
+                                    <li>ประธานหลายคน/ชิ้น 👉 กริยา <b>ไม่ต้องเติม -s</b> <br><span class="text-sm text-stone-500 italic">(The users write.)</span></li>
+                                    <li class="text-terracotta-600 mt-2">⚠️ ระวัง: I/You/We/They ห้ามตามด้วย V.ing ลอยๆ ต้องมี V.to be มาช่วยก่อนเสมอ (I am working ไม่ใช่ I working)</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-5 border border-stone-200 rounded-lg bg-stone-50">
+                                <h4 class="font-bold text-lg mb-2 text-sage-700">2. Passive Voice (ประธานถูกกระทำ)</h4>
+                                <p class="text-stone-700 mb-2">ข้อสอบไอทีออกบ่อยมาก (เช่น ระบบถูกแฮก, ไฟล์ถูกลบ ไม่ได้ไปกระทำเอง)</p>
+                                <p class="bg-white p-3 rounded border border-stone-200 font-mono text-center font-bold text-lg mb-2">V.to be + V.3</p>
+                                <p class="text-sm text-stone-500 italic">ตัวอย่าง: The file <b>was deleted</b>. (ไฟล์ถูกลบ)</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-100 border-t border-stone-200 mt-auto py-6 text-center text-stone-500 text-sm">
+        <p>จำไว้ว่า: การนอนหลับพักผ่อนให้เพียงพอ คือเทคนิคการทำข้อสอบที่ดีที่สุด โชคดีกับการสอบพรุ่งนี้นะทรี!</p>
+    </footer>
+
+    <script>
+        let examChartInstance = null;
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('bg-stone-800', 'text-white');
+                el.classList.add('text-stone-300');
+            });
+
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if(activeBtn) {
+                activeBtn.classList.add('bg-stone-800', 'text-white');
+                activeBtn.classList.remove('text-stone-300');
+            }
+
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            if (tabId === 'dashboard' && !examChartInstance) {
+                initChart();
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(`${id}-icon`);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.textContent = '▲';
+            } else {
+                content.classList.add('hidden');
+                icon.textContent = '▼';
+            }
+        }
+
+        function switchGrammarTab(tabId) {
+            document.querySelectorAll('.g-tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`g-tab-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.g-btn').forEach(el => {
+                el.classList.remove('bg-stone-800', 'text-white');
+                el.classList.add('bg-stone-100', 'text-stone-700');
+            });
+
+            const activeBtn = document.getElementById(`g-btn-${tabId}`);
+            activeBtn.classList.add('bg-stone-800', 'text-white');
+            activeBtn.classList.remove('bg-stone-100', 'text-stone-700');
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('examChart').getContext('2d');
+            examChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Listening (ฟัง)', 'Reading & Grammar (กา)'],
+                    datasets: [{
+                        data: [20, 55],
+                        backgroundColor: [
+                            '#52796f', 
+                            '#e07a5f'  
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    family: "'Sarabun', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                                    size: 14
+                                },
+                                color: '#292524'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + ' ข้อ';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+        }
+
+        window.onload = () => {
+            initChart();
+        };
+    </script>
+</body>
+</html>
